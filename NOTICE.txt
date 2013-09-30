@@ -1,5 +1,4 @@
 Casely
-Copyright 2013 Fossd and Talin
+Copyright 2013 Talin (http://fossd.org)
 
-This product includes software developed by The Apache Software
-Foundation (http://www.apache.org/).
+
