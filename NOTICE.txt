@@ -1,0 +1,5 @@
+Casely
+Copyright 2013 Fossd and Talin
+
+This product includes software developed by The Apache Software
+Foundation (http://www.apache.org/).
