@@ -1,4 +1,4 @@
 Casely
-Copyright 2013 Talin (http://fossd.org)
+Copyright 2013 codeset.org
 
 
