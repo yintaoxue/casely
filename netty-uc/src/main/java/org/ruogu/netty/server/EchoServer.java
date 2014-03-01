@@ -24,7 +24,7 @@ public class EchoServer {
 		try {
 		ServerBootstrap b = new ServerBootstrap();
 		b.group(group).channel(NioServerSocketChannel.class)
-		.localAddress(new InetSocketAddress(port))
+		.localAddress(new InetSocketAddress("127.0.0.1", port))
 		.childHandler(new ChannelInitializer<SocketChannel>() {
 			public void initChannel(SocketChannel ch) throws Exception {
 				ch.pipeline().addLast(new EchoServerHandler());
@@ -40,11 +40,11 @@ public class EchoServer {
 	}
 
 	public static void main(String[] args) throws Exception {
-		if (args.length != 1) {
-			System.err.println("Usage: " + EchoServer.class.getSimpleName() + " <port>");
-		}
-		int port = Integer.parseInt(args[0]);
-		new EchoServer(port).start();
+//		if (args.length != 1) {
+//			System.err.println("Usage: " + EchoServer.class.getSimpleName() + " <port>");
+//		}
+//		int port = Integer.parseInt(args[0]);
+		new EchoServer(8000).start();
 	}
 
 }

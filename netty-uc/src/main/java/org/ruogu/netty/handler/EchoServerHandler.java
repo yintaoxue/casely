@@ -17,6 +17,7 @@ public class EchoServerHandler extends ChannelHandlerAdapter {
 
 	@Override
 	public void channelReadComplete(ChannelHandlerContext ctx) {
+		System.out.println("channelReadComplete");
 		ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
 	}
 
