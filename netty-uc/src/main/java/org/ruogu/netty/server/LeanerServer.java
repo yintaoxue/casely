@@ -2,16 +2,14 @@ package org.ruogu.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-import org.ruogu.netty.handler.LeanerServerHandler;
+import org.ruogu.netty.initializer.LeanerServerInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,16 +29,11 @@ public class LeanerServer {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(bossGroup, workerGroup);
 			b.channel(NioServerSocketChannel.class);
-//			b.option(ChannelOption.SO_BACKLOG, 100);
+			b.option(ChannelOption.SO_BACKLOG, 100);
 			b.option(ChannelOption.TCP_NODELAY, true);
 			b.option(ChannelOption.SO_KEEPALIVE, true);
 			b.handler(new LoggingHandler(LogLevel.INFO));
-			b.childHandler(new ChannelInitializer<SocketChannel>() {
-				@Override
-				public void initChannel(SocketChannel ch) throws Exception {
-					ch.pipeline().addLast(new LeanerServerHandler());
-				}
-			});
+			b.childHandler(new LeanerServerInitializer());
 
 			// Start the server.
 			ChannelFuture f = b.bind(port).sync();
